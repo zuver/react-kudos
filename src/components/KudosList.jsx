@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import KudosThumbnail from './KudosThumbnail';
+import KudosThumbnailContainer from '../containers/KudosThumbnail';
 
 class KudosList extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class KudosList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.user && !this.state.kudos) {
+    if (nextProps.user) {
       this.fetchKudos(nextProps.user.id);
     }
   }
@@ -36,10 +36,11 @@ class KudosList extends React.Component {
 
     if (this.state && this.state.kudos) {
       kudos = this.state.kudos.map(kudo =>
-        <KudosThumbnail
+        <KudosThumbnailContainer
           key={kudo.id}
           kudosText={kudo.text}
           timeCreated={kudo.created_at}
+          giverId={kudo.giver_id}
         />
       );
     }
