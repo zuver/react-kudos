@@ -1,0 +1,68 @@
+body {
+  font-family: 'Exo 2', sans-serif;
+}
+
+h2, h4 {
+  margin: 0;
+}
+
+label {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.center-vertically {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container {
+  max-width: 768px;
+}
+
+.error {
+  color: red;
+}
+
+.fa-paper-plane {
+  color: #3e64ab;
+}
+
+.fa-star {
+  color: #fb5f00;
+}
+
+.heading {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.icon-container {
+  margin-right: 16px;
+}
+
+.kudos-link > a {
+  text-decoration: none;
+}
+
+.navbar-brand {
+  color: #fb5f00 !important;
+  font-family: 'Pacifico', cursive;
+  font-size: 32px;
+}
+
+.navbar-nav {
+  font-size: 16px;
+}
+
+.secondary-label {
+  color: gray;
+}
+
+.success {
+  color: green;
+}
