@@ -27,6 +27,13 @@ class App extends React.Component {
         const normalizedUsers = normalize(data, Schemas.USER_ARRAY);
         this.props.onLoadUsers(normalizedUsers.entities.users);
       });
+
+    // Fetch users from API
+    fetch(`/api/users/${this.props.currentUser.id}`)
+      .then(response => response.json())
+      .then((data) => {
+        this.props.onLoadCurrentUser(data);
+      });
   }
 
   render() {
@@ -54,7 +61,7 @@ class App extends React.Component {
               <Nav pullRight>
                 <NavItem eventKey={1}>
                   {this.props.currentUser &&
-                    `Signed in as ${this.props.currentUser.firstName} ${this.props.currentUser.lastName}`}
+                    `Signed in as ${this.props.currentUser.first_name} ${this.props.currentUser.last_name}`}
                 </NavItem>
               </Nav>
             </Navbar.Collapse>
@@ -90,6 +97,7 @@ class App extends React.Component {
 App.propTypes = {
   currentUser: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   onLoadUsers: PropTypes.func.isRequired,
+  onLoadCurrentUser: PropTypes.func.isRequired,
 };
 
 
