@@ -37,7 +37,8 @@ class KudosForm extends React.Component {
     event.preventDefault();
 
     this.setState({
-      hasError: false,
+      kudosSaved: false,
+      errorMessage: null,
     });
 
     const kudosData = {
@@ -58,8 +59,14 @@ class KudosForm extends React.Component {
       .then((response) => {
         if (response.ok) {
           this.setState({ kudosSaved: true });
-        } else {
-          this.setState({ hasError: true });
+          return {};
+        }
+
+        return response.json();
+      })
+      .then((data) => {
+        if (data.message) {
+          this.setState({ errorMessage: data.message });
         }
       });
   }
@@ -93,8 +100,8 @@ class KudosForm extends React.Component {
           <div className={this.state.kudosSaved ? 'success' : 'hidden'}>
             Kudos sent to <Link to={`/users/${this.state.kudosReceiverId}/kudos`}>{this.state.kudosReceiverName}</Link>
           </div>
-          <div className={this.state.hasError ? 'error' : 'hidden'}>
-            Something went wrong
+          <div className={this.state.errorMessage ? 'error' : 'hidden'}>
+            {this.state.errorMessage}
           </div>
         </form>
       </div>
